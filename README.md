@@ -13,6 +13,6 @@ Với cùng phương pháp, chúng em tách ra thành 2 model, model đầu tiê
 MAPE (mean absolute percentage error) thấp hơn 8.6% (đồng nghĩa chính xác 91.4%) với mô hình train đến từ năm 2016 đến 2021, và với độ chính xác 90.5% đối với mô hình train từ 2014-2019 và test dựa vào forecast các năm 2020-2021. 
 
 # Cách sử dụng
-1. Tải requirements.txt
+1. pip install -r requirements.txt
 2. Sử dụng forecast.py và dùng find_best_model() để train được model tối ưu cho dữ liệu.
 3. Sử dụng forecast() để dự báo predicted_mean, lower_bound, và upper_bound
