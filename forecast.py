@@ -8,7 +8,7 @@ import pandas as pd
 import statsmodels.api as sm
 import matplotlib
 from sktime.performance_metrics.forecasting import *
-
+from scipy import stats
 
 def print_metrics(ref, comp, model_name='Model'):
     mae_ = mean_absolute_error(ref, comp)
@@ -90,5 +90,15 @@ def get_best_model(key, data):
 
 def forecast(model, steps=36):
     '''Returns (Forecast, Lower bound forecast, Upper bound forecast)'''
-    return ((r:=model.get_forecast(steps=steps)).predicted_mean,  r.iloc[:, 0], r.iloc[:, 1])
+    return ((r:=model.get_forecast(steps=steps)).predicted_mean,  r.conf_int().iloc[:, 0], r.conf_int().iloc[:, 1])
 
+def predict_shorterm(x,y, terms=7):
+    slope, intercept, r, p, std_err = stats.linregress(range(len(x)), y)
+    return [slope*xi + intercept for xi in range(len(x))]
+
+#x = [23,22,24]
+#y = [0,1,2]
+
+
+
+#predict_shorterm(23,22,24)
